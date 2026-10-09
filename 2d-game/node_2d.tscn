@@ -2,7 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://cy07ku6e3xxvd" path="res://icon.svg" id="1_wtcfe"]
 
-[node name="Node2D" type="Node2D" unique_id=1001865164]
+[node name="Ian Main Scene" type="Node2D" unique_id=1001865164]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=346111616]
+[node name="Ian Sprite2D" type="Sprite2D" parent="." unique_id=346111616]
 texture = ExtResource("1_wtcfe")
+
+[node name="Vigo Main Scene" type="Node" parent="." unique_id=492872271]
+
+[node name="Vigo Sprite2D" type="Sprite2D" parent="Vigo Main Scene" unique_id=1747249951]
