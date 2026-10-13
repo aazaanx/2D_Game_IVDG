@@ -87,5 +87,5 @@ position = Vector2(27.5, 55)
 scale = Vector2(4.4375, 4.4375)
 sprite_frames = SubResource("SpriteFrames_e2urk")
 animation = &"walk"
-frame_progress = 0.058553975
+frame_progress = 0.16934776
 script = ExtResource("3_0hol4")
