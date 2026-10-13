@@ -14,6 +14,6 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_A):
 		position.x -= speed * delta
 	if Input.is_key_pressed(KEY_S):
-		position.y -= speed * delta
+		position.y += speed * delta
 	if Input.is_key_pressed(KEY_W):
-		position.y += speed * delta 
+		position.y -= speed * delta 
