@@ -38,6 +38,11 @@ region = Rect2(112, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e2urk"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q6r6c")
@@ -87,5 +92,4 @@ position = Vector2(27.5, 55)
 scale = Vector2(4.4375, 4.4375)
 sprite_frames = SubResource("SpriteFrames_e2urk")
 animation = &"walk"
-frame_progress = 0.3423162
 script = ExtResource("3_0hol4")
