@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cim1wocqo3wrc"]
+
+[ext_resource type="Script" uid="uid://sn2tp7ml3rcx" path="res://block_maze.gd" id="1_g6wdw"]
+[ext_resource type="Texture2D" uid="uid://25wdongsw3ks" path="res://wall-path-0001.png" id="2_w4oi7"]
+[ext_resource type="Script" uid="uid://bs6shafparg1b" path="res://player.gd" id="3_fwokh"]
+[ext_resource type="Texture2D" uid="uid://dnwk4er3un5wu" path="res://pumpkin_dude_idle_anim_f0.png" id="4_fwokh"]
+[ext_resource type="Texture2D" uid="uid://cwb26tni4e6wf" path="res://pumpkin_dude_idle_anim_f1.png" id="5_2712s"]
+[ext_resource type="Texture2D" uid="uid://cu2yea1x01ygj" path="res://pumpkin_dude_idle_anim_f2.png" id="6_qfdta"]
+[ext_resource type="Texture2D" uid="uid://ctwgdycv26ryk" path="res://pumpkin_dude_idle_anim_f3.png" id="7_dkexc"]
+[ext_resource type="Texture2D" uid="uid://clipadgmqpqfk" path="res://pumpkin_dude_run_anim_f0.png" id="8_533et"]
+[ext_resource type="Texture2D" uid="uid://di868wgwgku6y" path="res://pumpkin_dude_run_anim_f1.png" id="9_eywa3"]
+[ext_resource type="Texture2D" uid="uid://be0sfxcgy5sxn" path="res://pumpkin_dude_run_anim_f2.png" id="10_sg47j"]
+[ext_resource type="Texture2D" uid="uid://b0sqau04ypcol" path="res://pumpkin_dude_run_anim_f3.png" id="11_sudw2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lvo3l"]
+texture = ExtResource("2_w4oi7")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_j3t2j"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_lvo3l")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ftco6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fwokh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2712s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qfdta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dkexc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_533et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sg47j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_eywa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_sudw2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rt8m2"]
+radius = 2.828427
+
+[node name="block_maze" type="Node2D" unique_id=1879152182]
+y_sort_enabled = true
+script = ExtResource("1_g6wdw")
+
+[node name="Button" type="Button" parent="." unique_id=793289370]
+offset_right = 8.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Button" unique_id=1064392259]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_j3t2j")
+collision_visibility_mode = 1
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=879274158]
+position = Vector2(87, 59)
+motion_mode = 1
+script = ExtResource("3_fwokh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=540901642]
+position = Vector2(-45, -24)
+sprite_frames = SubResource("SpriteFrames_ftco6")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=331287486]
+position = Vector2(-46, -21)
+limit_left = -1
+limit_top = -1
+limit_right = 1151
+limit_bottom = 647
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="player" unique_id=669614396]
+y_sort_enabled = true
+position = Vector2(-44, -16)
+shape = SubResource("CircleShape2D_rt8m2")
