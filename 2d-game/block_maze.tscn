@@ -85,7 +85,7 @@ tile_set = SubResource("TileSet_j3t2j")
 collision_visibility_mode = 1
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=879274158]
-position = Vector2(87, 59)
+position = Vector2(66, 38)
 motion_mode = 1
 script = ExtResource("3_fwokh")
 
