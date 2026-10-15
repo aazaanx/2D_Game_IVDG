@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed = 400
+const speed = 200
 var current_dir = "none"
 
 func _ready() -> void:
