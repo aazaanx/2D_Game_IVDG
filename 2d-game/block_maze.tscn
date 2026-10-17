@@ -73,7 +73,7 @@ animations = [{
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rt8m2"]
 gradient = SubResource("Gradient_fwokh")
-width = 70
+width = 80
 height = 66
 fill = 1
 fill_from = Vector2(0.56565654, 0.540404)
@@ -111,7 +111,8 @@ sprite_frames = SubResource("SpriteFrames_ftco6")
 [node name="PointLight2D" type="PointLight2D" parent="player" unique_id=767942283]
 position = Vector2(2.3841858e-07, 0)
 scale = Vector2(0.40625, 0.453125)
-energy = 0.97
+energy = 1.12
+blend_mode = 2
 texture = SubResource("GradientTexture2D_rt8m2")
 script = ExtResource("4_2712s")
 
