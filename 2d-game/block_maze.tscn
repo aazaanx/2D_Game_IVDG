@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://sn2tp7ml3rcx" path="res://block_maze.gd" id="1_g6wdw"]
 [ext_resource type="Texture2D" uid="uid://25wdongsw3ks" path="res://wall-path-0001.png" id="2_w4oi7"]
 [ext_resource type="Script" uid="uid://bs6shafparg1b" path="res://player.gd" id="3_fwokh"]
+[ext_resource type="Script" uid="uid://dudcfa7nni55u" path="res://point_light_2d.gd" id="4_2712s"]
 [ext_resource type="Texture2D" uid="uid://dnwk4er3un5wu" path="res://pumpkin_dude_idle_anim_f0.png" id="4_fwokh"]
 [ext_resource type="Texture2D" uid="uid://cwb26tni4e6wf" path="res://pumpkin_dude_idle_anim_f1.png" id="5_2712s"]
 [ext_resource type="Texture2D" uid="uid://cu2yea1x01ygj" path="res://pumpkin_dude_idle_anim_f2.png" id="6_qfdta"]
@@ -32,6 +33,7 @@ texture = ExtResource("2_w4oi7")
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_j3t2j"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lvo3l")
 
@@ -67,12 +69,25 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_fwokh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rt8m2"]
+gradient = SubResource("Gradient_fwokh")
+width = 70
+height = 66
+fill = 1
+fill_from = Vector2(0.56565654, 0.540404)
+fill_to = Vector2(1, 0.40588236)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_rt8m2"]
-radius = 2.828427
+radius = 4.472136
 
 [node name="block_maze" type="Node2D" unique_id=1879152182]
 y_sort_enabled = true
 script = ExtResource("1_g6wdw")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1628076181]
+color = Color(0.017732391, 0.017732391, 0.01773239, 1)
 
 [node name="Button" type="Button" parent="." unique_id=793289370]
 offset_right = 8.0
@@ -85,22 +100,29 @@ tile_set = SubResource("TileSet_j3t2j")
 collision_visibility_mode = 1
 
 [node name="player" type="CharacterBody2D" parent="." unique_id=879274158]
-position = Vector2(66, 38)
+position = Vector2(26, 29)
 motion_mode = 1
 script = ExtResource("3_fwokh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=540901642]
-position = Vector2(-45, -24)
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ftco6")
 
-[node name="Camera2D" type="Camera2D" parent="player" unique_id=331287486]
-position = Vector2(-46, -21)
-limit_left = -1
-limit_top = -1
-limit_right = 1151
-limit_bottom = 647
+[node name="PointLight2D" type="PointLight2D" parent="player" unique_id=767942283]
+position = Vector2(2.3841858e-07, 0)
+scale = Vector2(0.40625, 0.453125)
+energy = 0.97
+texture = SubResource("GradientTexture2D_rt8m2")
+script = ExtResource("4_2712s")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="player" unique_id=669614396]
 y_sort_enabled = true
-position = Vector2(-44, -16)
+position = Vector2(1, 4)
 shape = SubResource("CircleShape2D_rt8m2")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=331287486]
+position = Vector2(0, 5)
+limit_left = 0
+limit_top = 1
+limit_right = 1152
+limit_bottom = 649
