@@ -1,3 +1,4 @@
+
 extends Node2D
 
 # Maze dimensions
@@ -8,6 +9,10 @@ const CELL_SIZE = 20
 # Colors
 const WALL_COLOR = Color("#333333")
 const PATH_COLOR = Color("#eeeeee")
+const GOAL_COLOR = Color("#22cc66")
+
+# Main game scene
+const MAIN_SCENE = "res://block_maze.tscn"
 
 # Maze data
 var maze = []
@@ -15,129 +20,213 @@ var maze = []
 # UI elements
 var generate_button: Button
 
-# A container node to group all physical wall collision blocks together
+# Container for physical wall collision blocks
 var wall_container: Node2D
 
+# Tutorial goal
+var goal: Area2D
+
+
 func _ready():
-	# Create the collision container and add it to the scene tree
+	# Create the collision container
 	wall_container = Node2D.new()
 	add_child(wall_container)
-	
+
 	# Setup the scene
-	setup_ui()
-	
+
+
 	# Initialize maze array
 	initialize_maze()
-	
+
 	# Generate initial maze
 	generate_maze()
-	
+
+	# Create the tutorial goal
+	setup_goal()
+
 	# Force redraw
 	queue_redraw()
 
-func setup_ui():
-	# Create a generate button
-	generate_button = Button.new()
-	generate_button.text = "Generate New Maze"
-	generate_button.position = Vector2(10, ROWS * CELL_SIZE + 10)
-	generate_button.size = Vector2(150, 30)
-	generate_button.connect("pressed", Callable(self, "_on_generate_button_pressed"))
-	add_child(generate_button)
+
 
 func initialize_maze():
-	# Create a 2D array filled with walls (1)
 	maze = []
+
 	for r in range(ROWS):
 		var row = []
+
 		for c in range(COLS):
 			row.append(1)
+
 		maze.append(row)
 
-func generate_maze():
-	# Wipe away any old collision blocks from a previous maze layout
-	for child in wall_container.get_children():
-		child.queue_free()
 
-	# Reset maze to all walls
+func generate_maze():
+	# Remove old wall collision blocks
+	for child in wall_container.get_children():
+		child.free()
+
+	# Reset maze
 	for r in range(ROWS):
 		for c in range(COLS):
 			maze[r][c] = 1
-	
-	# Start at position (1,1)
+
+	# Start position
 	var start_row = 1
 	var start_col = 1
 	maze[start_row][start_col] = 0
-	
-	# Start carving passages
+
+	# Carve passages
 	carve_passages(start_row, start_col)
-	
-	# Tell the physics engine to spawn collision blocks where your walls are
+
+	# Ensure goal is walkable and connected
+	var goal_row = ROWS - 2
+	var goal_col = COLS - 2
+
+	maze[goal_row][goal_col] = 0
+	maze[goal_row][goal_col - 1] = 0
+
+	# Create wall collisions
 	create_wall_collisions()
 
+
 func carve_passages(r, c):
-	# Define the four possible directions (up, right, down, left) with a step of 2
 	var directions = [
-		[-2, 0],  # Up
-		[0, 2],   # Right
-		[2, 0],   # Down
-		[0, -2]   # Left
+		[-2, 0],
+		[0, 2],
+		[2, 0],
+		[0, -2]
 	]
-	
-	# Randomize direction order
+
 	directions.shuffle()
-	
-	# Try each direction
+
 	for direction in directions:
-		# 💡 FIXED: Safely added back the index positions [0] and [1] 
 		var dr = direction[0]
 		var dc = direction[1]
-		
+
 		var new_r = r + dr
 		var new_c = c + dc
-		
-		# Check if the new position is valid and still a wall
-		if new_r > 0 and new_r < ROWS - 1 and new_c > 0 and new_c < COLS - 1 and maze[new_r][new_c] == 1:
-			# Carve passage by making the wall between current and new cell a path
-			maze[r + dr/2][c + dc/2] = 0
-			# Make the new cell a path
+
+		if (
+			new_r > 0
+			and new_r < ROWS - 1
+			and new_c > 0
+			and new_c < COLS - 1
+			and maze[new_r][new_c] == 1
+		):
+			maze[r + int(dr / 2)][c + int(dc / 2)] = 0
 			maze[new_r][new_c] = 0
-			# Continue from the new cell
+
 			carve_passages(new_r, new_c)
 
-# This function loops through your grid array and spawns a real collision block for every wall
+
 func create_wall_collisions():
 	for r in range(ROWS):
 		for c in range(COLS):
-			if maze[r][c] == 1: # If this grid slot is a wall
-				
-				# 1. Create a physical static body
+			if maze[r][c] == 1:
 				var static_body = StaticBody2D.new()
-				
-				# 2. Position it at the center of the grid tile
+
 				static_body.position = Vector2(
-					c * CELL_SIZE + CELL_SIZE / 2.0, 
+					c * CELL_SIZE + CELL_SIZE / 2.0,
 					r * CELL_SIZE + CELL_SIZE / 2.0
 				)
-				
-				# 3. Create a box shape matching the pixel size of your cell
+
 				var collision_shape = CollisionShape2D.new()
 				var box_shape = RectangleShape2D.new()
-				box_shape.size = Vector2(CELL_SIZE, CELL_SIZE)
+
+				box_shape.size = Vector2(
+					CELL_SIZE,
+					CELL_SIZE
+				)
+
 				collision_shape.shape = box_shape
-				
-				# 4. Attach the shape to the body, and put the body in our container
 				static_body.add_child(collision_shape)
 				wall_container.add_child(static_body)
 
+
+# =========================================
+# TUTORIAL GOAL
+# =========================================
+
+func setup_goal():
+	if is_instance_valid(goal):
+		goal.queue_free()
+
+	goal = Area2D.new()
+	goal.name = "TutorialGoal"
+
+	# Bottom-right goal cell
+	goal.position = Vector2(
+		(COLS - 2) * CELL_SIZE + CELL_SIZE / 2.0,
+		(ROWS - 2) * CELL_SIZE + CELL_SIZE / 2.0
+	)
+
+	# Detect bodies on collision layer 1
+	goal.collision_layer = 0
+	goal.collision_mask = 1
+	goal.monitoring = true
+
+	var collision = CollisionShape2D.new()
+	var shape = RectangleShape2D.new()
+	shape.size = Vector2(18, 18)
+
+	collision.shape = shape
+	goal.add_child(collision)
+	add_child(goal)
+
+	goal.body_entered.connect(_on_goal_body_entered)
+
+
+func _on_goal_body_entered(body: Node2D):
+	print("Goal touched by: ", body.name)
+
+	# Player node must be named Player
+	if body.name != "player":
+		return
+
+	print("Tutorial completed! Loading main game...")
+
+	# Defer scene change to avoid physics callback issues
+	get_tree().call_deferred(
+		"change_scene_to_file",
+		MAIN_SCENE
+	)
+
+
+# =========================================
+# DRAW MAZE
+# =========================================
+
 func _draw():
-	# Draw the maze
 	for r in range(ROWS):
 		for c in range(COLS):
-			var color = WALL_COLOR if maze[r][c] == 1 else PATH_COLOR
-			var rect = Rect2(c * CELL_SIZE, r * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+			var color = (
+				WALL_COLOR
+				if maze[r][c] == 1
+				else PATH_COLOR
+			)
+
+			var rect = Rect2(
+				c * CELL_SIZE,
+				r * CELL_SIZE,
+				CELL_SIZE,
+				CELL_SIZE
+			)
+
 			draw_rect(rect, color)
 
+	# Draw green goal marker
+	draw_rect(
+		Rect2(
+			(COLS - 2) * CELL_SIZE + 4,
+			(ROWS - 2) * CELL_SIZE + 4,
+			CELL_SIZE - 8,
+			CELL_SIZE - 8
+		),
+		GOAL_COLOR
+	)
+
+
 func _on_generate_button_pressed():
-	# Generate a new maze and redraw
 	generate_maze()
 	queue_redraw()
