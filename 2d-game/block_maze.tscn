@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://be0sfxcgy5sxn" path="res://pumpkin_dude_run_anim_f2.png" id="10_sg47j"]
 [ext_resource type="Texture2D" uid="uid://b0sqau04ypcol" path="res://pumpkin_dude_run_anim_f3.png" id="11_sudw2"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lvo3l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2712s"]
 texture = ExtResource("2_w4oi7")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -35,7 +35,7 @@ texture = ExtResource("2_w4oi7")
 [sub_resource type="TileSet" id="TileSet_j3t2j"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_lvo3l")
+sources/0 = SubResource("TileSetAtlasSource_2712s")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ftco6"]
 animations = [{
@@ -51,28 +51,33 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_dkexc")
+}],
+"loop": 1,
+"name": &"idle_side",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_533et")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_sg47j")
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_eywa3")
 }, {
 "duration": 1.0,
+"texture": ExtResource("10_sg47j")
+}, {
+"duration": 1.0,
 "texture": ExtResource("11_sudw2")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"walk_side",
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_fwokh"]
+[sub_resource type="Gradient" id="Gradient_qfdta"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rt8m2"]
-gradient = SubResource("Gradient_fwokh")
+gradient = SubResource("Gradient_qfdta")
 width = 80
 height = 66
 fill = 1
@@ -90,8 +95,10 @@ script = ExtResource("1_g6wdw")
 color = Color(0.017732391, 0.017732391, 0.01773239, 1)
 
 [node name="Button" type="Button" parent="." unique_id=793289370]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 1.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = -1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Button" unique_id=1064392259]
@@ -107,6 +114,7 @@ script = ExtResource("3_fwokh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player" unique_id=540901642]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_ftco6")
+animation = &"walk_side"
 
 [node name="PointLight2D" type="PointLight2D" parent="player" unique_id=767942283]
 position = Vector2(2.3841858e-07, 0)

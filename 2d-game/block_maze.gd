@@ -23,8 +23,7 @@ func _ready():
 	wall_container = Node2D.new()
 	add_child(wall_container)
 	
-	# Setup the scene
-	setup_ui()
+
 	
 	# Initialize maze array
 	initialize_maze()
@@ -35,14 +34,7 @@ func _ready():
 	# Force redraw
 	queue_redraw()
 
-func setup_ui():
-	# Create a generate button
-	generate_button = Button.new()
-	generate_button.text = "Generate New Maze"
-	generate_button.position = Vector2(10, ROWS * CELL_SIZE + 10)
-	generate_button.size = Vector2(150, 30)
-	generate_button.connect("pressed", Callable(self, "_on_generate_button_pressed"))
-	add_child(generate_button)
+
 
 func initialize_maze():
 	# Create a 2D array filled with walls (1)

@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://c4fybi6y6wns0"]
+
+[ext_resource type="Texture2D" uid="uid://25wdongsw3ks" path="res://wall-path-0001.png" id="2_vmw6g"]
+[ext_resource type="Script" uid="uid://bs6shafparg1b" path="res://player.gd" id="3_4hjyh"]
+[ext_resource type="Script" uid="uid://di2nyj3xd0lp8" path="res://node_2d.gd" id="3_vmw6g"]
+[ext_resource type="Texture2D" uid="uid://dnwk4er3un5wu" path="res://pumpkin_dude_idle_anim_f0.png" id="4_bsk3x"]
+[ext_resource type="Texture2D" uid="uid://cwb26tni4e6wf" path="res://pumpkin_dude_idle_anim_f1.png" id="5_dl7dh"]
+[ext_resource type="Texture2D" uid="uid://cu2yea1x01ygj" path="res://pumpkin_dude_idle_anim_f2.png" id="6_r4o0u"]
+[ext_resource type="Texture2D" uid="uid://ctwgdycv26ryk" path="res://pumpkin_dude_idle_anim_f3.png" id="7_k08xv"]
+[ext_resource type="Texture2D" uid="uid://clipadgmqpqfk" path="res://pumpkin_dude_run_anim_f0.png" id="8_g52lx"]
+[ext_resource type="Texture2D" uid="uid://be0sfxcgy5sxn" path="res://pumpkin_dude_run_anim_f2.png" id="9_0lped"]
+[ext_resource type="Texture2D" uid="uid://di868wgwgku6y" path="res://pumpkin_dude_run_anim_f1.png" id="10_dudfa"]
+[ext_resource type="Texture2D" uid="uid://b0sqau04ypcol" path="res://pumpkin_dude_run_anim_f3.png" id="11_5gpbq"]
+[ext_resource type="Script" uid="uid://cj15qmqdgif2" path="res://area_2d.gd" id="12_vmw6g"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyhf1"]
+texture = ExtResource("2_vmw6g")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_53tq2"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_dyhf1")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ods2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_bsk3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dl7dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r4o0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k08xv")
+}],
+"loop": 1,
+"name": &"idle_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_g52lx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dudfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0lped")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5gpbq")
+}],
+"loop": 1,
+"name": &"walk_side",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns12n"]
+radius = 4.472136
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvjhf"]
+radius = 15.811388
+
+[node name="Node2D" type="Control" unique_id=714893681]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RUN" type="Label" parent="." unique_id=1326142556]
+top_level = true
+layout_mode = 0
+offset_left = 611.0
+offset_top = 44.0
+offset_right = 1093.0
+offset_bottom = 72.0
+text = "Use the Arrow Keys to move around, Find the marker and leave! "
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="." unique_id=785057881]
+script = ExtResource("3_vmw6g")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Node2D" unique_id=508615429]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_53tq2")
+collision_visibility_mode = 1
+
+[node name="player" type="CharacterBody2D" parent="Node2D" unique_id=1664381969]
+position = Vector2(26, 29)
+motion_mode = 1
+script = ExtResource("3_4hjyh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/player" unique_id=1281890681]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_4ods2")
+animation = &"walk_side"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/player" unique_id=102551152]
+y_sort_enabled = true
+position = Vector2(1, 4)
+shape = SubResource("CircleShape2D_ns12n")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/player" unique_id=25897631]
+position = Vector2(0, 5)
+limit_left = 0
+limit_top = 1
+limit_right = 1152
+limit_bottom = 649
+
+[node name="Area2D" type="Area2D" parent="." unique_id=822796132]
+script = ExtResource("12_vmw6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2112423359]
+position = Vector2(1123, 606)
+shape = SubResource("CircleShape2D_tvjhf")
