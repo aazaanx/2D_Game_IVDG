@@ -79,7 +79,7 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rt8m2"]
 gradient = SubResource("Gradient_qfdta")
 width = 80
-height = 72
+height = 80
 fill = 1
 fill_from = Vector2(0.56565654, 0.540404)
 fill_to = Vector2(1, 0.40588236)
@@ -117,16 +117,16 @@ sprite_frames = SubResource("SpriteFrames_ftco6")
 animation = &"walk_side"
 
 [node name="PointLight2D" type="PointLight2D" parent="player" unique_id=767942283]
-position = Vector2(2.3841858e-07, 0)
-scale = Vector2(0.40625, 0.453125)
-energy = 1.2
+position = Vector2(0, -7.1525574e-07)
+scale = Vector2(0.58750004, 0.5448351)
+energy = 1.34
 blend_mode = 2
 texture = SubResource("GradientTexture2D_rt8m2")
 script = ExtResource("4_2712s")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="player" unique_id=669614396]
 y_sort_enabled = true
-position = Vector2(1, 4)
+position = Vector2(1, 3)
 shape = SubResource("CircleShape2D_rt8m2")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=331287486]

@@ -4,7 +4,7 @@ const speed = 400
 var current_dir = "none"
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("front_idle") # Note: Check if this matches "idle_front" below!
+	$AnimatedSprite2D.play("walk_idle") # Note: Check if this matches "idle_front" below!
 
 func _physics_process(delta: float) -> void:
 	player_movement(delta)
@@ -50,11 +50,11 @@ func player_animation(movement: int) -> void:
 			
 	elif current_dir == "up":
 		animation.flip_h = false # Typically back animations don't need horizontal flipping
-		animation.play("walk_back" if movement == 1 else "idle_back")
+		animation.play("walk_side" if movement == 1 else "idle_side")
 			
 	elif current_dir == "down":
 		animation.flip_h = false # Typically front animations don't need horizontal flipping
-		animation.play("walk_front" if movement == 1 else "idle_front")
+		animation.play("walk_side" if movement == 1 else "idle_side")
 
 # Transition detection functions
 func _on_cliff_side_transition_body_entered(body: Node2D) -> void:

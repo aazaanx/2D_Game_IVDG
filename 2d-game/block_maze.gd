@@ -23,8 +23,6 @@ func _ready():
 	wall_container = Node2D.new()
 	add_child(wall_container)
 	
-
-	
 	# Initialize maze array
 	initialize_maze()
 	
@@ -33,8 +31,6 @@ func _ready():
 	
 	# Force redraw
 	queue_redraw()
-
-
 
 func initialize_maze():
 	# Create a 2D array filled with walls (1)
