@@ -16,7 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://cnp3gf7hmaors" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v1/skeleton_v1_2.png" id="14_uty7l"]
 [ext_resource type="Texture2D" uid="uid://q8xxldj1vweh" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v1/skeleton_v1_3.png" id="15_45l4g"]
 [ext_resource type="Texture2D" uid="uid://dti1qngavgd37" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v1/skeleton_v1_4.png" id="16_4uo0j"]
-[ext_resource type="Texture2D" uid="uid://ct61yoft6vwcc" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_chest/mini_chest_1.png" id="17_uty7l"]
+[ext_resource type="Texture2D" uid="uid://bcpmbbbfu63hp" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_1.png" id="17_vxl6d"]
+[ext_resource type="Texture2D" uid="uid://jxksbo8fvave" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_2.png" id="18_eski5"]
+[ext_resource type="Texture2D" uid="uid://drmysmdjkwx3t" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_3.png" id="19_pdf00"]
+[ext_resource type="Texture2D" uid="uid://c67psywjksc8u" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_4.png" id="20_a6gra"]
+[ext_resource type="Texture2D" uid="uid://d0i1w5u74oigt" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png" id="21_dwqlq"]
+[ext_resource type="Texture2D" uid="uid://tcj4waeruuuy" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_2.png" id="22_15c7i"]
+[ext_resource type="Texture2D" uid="uid://dwiqrcw4qrthx" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_3.png" id="23_xpeyw"]
+[ext_resource type="Texture2D" uid="uid://n3pxcechafd" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_4.png" id="24_dpmuy"]
+[ext_resource type="Texture2D" uid="uid://rwlyh6r45woy" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_1.png" id="25_15c7i"]
+[ext_resource type="Texture2D" uid="uid://dssh647qaluen" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_2.png" id="26_yww54"]
+[ext_resource type="Texture2D" uid="uid://bccwlf81dj0ag" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_3.png" id="27_j75vh"]
+[ext_resource type="Texture2D" uid="uid://clgqf3tan5dny" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_4.png" id="28_rrpoi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8uh7m"]
 texture = ExtResource("1_37kl0")
@@ -335,8 +346,8 @@ gradient = SubResource("Gradient_qfdta")
 width = 80
 height = 80
 fill = 1
-fill_from = Vector2(0.56565654, 0.540404)
-fill_to = Vector2(1, 0.40588236)
+fill_from = Vector2(0.92253524, 0.058685444)
+fill_to = Vector2(0.46244133, 0.52347416)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a6gra"]
 radius = 4.0
@@ -360,6 +371,81 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_4uo0j")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lm1o7"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_vxl6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_eski5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pdf00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_a6gra")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utwfw"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_dwqlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_15c7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_xpeyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dpmuy")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6l0ca"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_15c7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_yww54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_j75vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_rrpoi")
 }],
 "loop": 1,
 "name": &"new_animation",
@@ -406,12 +492,31 @@ limit_right = 1152
 limit_bottom = 649
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2007950852]
+y_sort_enabled = true
 position = Vector2(312, 172)
 scale = Vector2(1.025, 1.081)
 sprite_frames = SubResource("SpriteFrames_j3t2j")
 animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.20299488
 
-[node name="MiniChest1" type="Sprite2D" parent="." unique_id=1834860764]
-position = Vector2(109, 26)
-scale = Vector2(1.5, 1)
-texture = ExtResource("17_uty7l")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1228559298]
+position = Vector2(111.00001, 35)
+scale = Vector2(1.8749994, 1.34375)
+sprite_frames = SubResource("SpriteFrames_lm1o7")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." unique_id=1961746768]
+position = Vector2(109.99999, 91)
+scale = Vector2(1.1874996, 0.8437502)
+sprite_frames = SubResource("SpriteFrames_utwfw")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="Torch1" type="AnimatedSprite2D" parent="." unique_id=1419786050]
+position = Vector2(112, 11)
+sprite_frames = SubResource("SpriteFrames_6l0ca")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.2999415
