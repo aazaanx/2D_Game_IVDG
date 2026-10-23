@@ -491,32 +491,32 @@ limit_top = 1
 limit_right = 1152
 limit_bottom = 649
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2007950852]
+[node name="Skeleton" type="AnimatedSprite2D" parent="." unique_id=2007950852]
 y_sort_enabled = true
 position = Vector2(312, 172)
 scale = Vector2(1.025, 1.081)
 sprite_frames = SubResource("SpriteFrames_j3t2j")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame_progress = 0.48810527
+frame_progress = 0.09958676
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1228559298]
+[node name="Chest" type="AnimatedSprite2D" parent="." unique_id=1228559298]
 position = Vector2(111.00001, 35)
 scale = Vector2(1.8749994, 1.34375)
 sprite_frames = SubResource("SpriteFrames_lm1o7")
 animation = &"new_animation"
 autoplay = "new_animation"
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." unique_id=1961746768]
+[node name="Key" type="AnimatedSprite2D" parent="." unique_id=1961746768]
 position = Vector2(109.99999, 91)
 scale = Vector2(1.1874996, 0.8437502)
 sprite_frames = SubResource("SpriteFrames_utwfw")
 animation = &"new_animation"
 autoplay = "new_animation"
 
-[node name="Torch1" type="AnimatedSprite2D" parent="." unique_id=1419786050]
+[node name="Wall Torch" type="AnimatedSprite2D" parent="." unique_id=1419786050]
 position = Vector2(112, 11)
 sprite_frames = SubResource("SpriteFrames_6l0ca")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame_progress = 0.58504987
+frame_progress = 0.19652912
