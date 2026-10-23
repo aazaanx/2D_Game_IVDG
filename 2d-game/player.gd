@@ -1,64 +1,58 @@
+
 extends CharacterBody2D
 
 const speed = 200
 var current_dir = "none"
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("idle_side") # Note: Check if this matches "idle_front" below!
+	$AnimatedSprite2D.play("idle_side")
 
-func _physics_process(delta: float) -> void:
-	player_movement(delta)
+func _physics_process(_delta: float) -> void:
+	player_movement()
 
-func player_movement(delta: float) -> void:
+func player_movement() -> void:
 	var input_vector = Vector2.ZERO
-	
-	# Get inputs cleanly
+
 	if Input.is_action_pressed("ui_right"):
-		input_vector.x = 1
+		input_vector.x += 1
 		current_dir = "right"
-	elif Input.is_action_pressed("ui_left"):
-		input_vector.x = -1
+
+	if Input.is_action_pressed("ui_left"):
+		input_vector.x -= 1
 		current_dir = "left"
-		
+
 	if Input.is_action_pressed("ui_up"):
-		input_vector.y = -1
+		input_vector.y -= 1
 		current_dir = "up"
-	elif Input.is_action_pressed("ui_down"):
-		input_vector.y = 1
+
+	if Input.is_action_pressed("ui_down"):
+		input_vector.y += 1
 		current_dir = "down"
-	
-	# Apply velocity
+
 	if input_vector != Vector2.ZERO:
 		velocity = input_vector.normalized() * speed
 		player_animation(1)
 	else:
 		velocity = Vector2.ZERO
 		player_animation(0)
-	
+
 	move_and_slide()
-	
+
 func player_animation(movement: int) -> void:
 	var animation = $AnimatedSprite2D
-	
+
 	if current_dir == "right":
 		animation.flip_h = false
 		animation.play("walk_side" if movement == 1 else "idle_side")
-			
+
 	elif current_dir == "left":
 		animation.flip_h = true
 		animation.play("walk_side" if movement == 1 else "idle_side")
-			
+
 	elif current_dir == "up":
-		animation.flip_h = false # Typically back animations don't need horizontal flipping
+		animation.flip_h = false
 		animation.play("walk_side" if movement == 1 else "idle_side")
-			
+
 	elif current_dir == "down":
-		animation.flip_h = false # Typically front animations don't need horizontal flipping
+		animation.flip_h = false
 		animation.play("walk_side" if movement == 1 else "idle_side")
-
-# Transition detection functions
-func _on_cliff_side_transition_body_entered(body: Node2D) -> void:
-	print("Entered: ", body.name)
-
-func _on_cliff_side_transition_body_exited(body: Node2D) -> void:
-	print("Exited: ", body.name)
