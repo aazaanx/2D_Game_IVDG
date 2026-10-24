@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://25wdongsw3ks" path="res://wall-path-0001.png" id="2_vmw6g"]
 [ext_resource type="Script" uid="uid://bs6shafparg1b" path="res://player.gd" id="3_4hjyh"]
-[ext_resource type="Script" uid="uid://di2nyj3xd0lp8" path="res://node_2d.gd" id="3_vmw6g"]
 [ext_resource type="Texture2D" uid="uid://dnwk4er3un5wu" path="res://pumpkin_dude_idle_anim_f0.png" id="4_bsk3x"]
 [ext_resource type="Texture2D" uid="uid://cwb26tni4e6wf" path="res://pumpkin_dude_idle_anim_f1.png" id="5_dl7dh"]
 [ext_resource type="Texture2D" uid="uid://cu2yea1x01ygj" path="res://pumpkin_dude_idle_anim_f2.png" id="6_r4o0u"]
@@ -11,7 +10,241 @@
 [ext_resource type="Texture2D" uid="uid://be0sfxcgy5sxn" path="res://pumpkin_dude_run_anim_f2.png" id="9_0lped"]
 [ext_resource type="Texture2D" uid="uid://di868wgwgku6y" path="res://pumpkin_dude_run_anim_f1.png" id="10_dudfa"]
 [ext_resource type="Texture2D" uid="uid://b0sqau04ypcol" path="res://pumpkin_dude_run_anim_f3.png" id="11_5gpbq"]
-[ext_resource type="Script" uid="uid://cj15qmqdgif2" path="res://area_2d.gd" id="12_vmw6g"]
+
+[sub_resource type="GDScript" id="GDScript_bhfnd"]
+script/source = "
+extends Node2D
+
+# Maze dimensions
+const ROWS = 25
+const COLS = 25
+const CELL_SIZE = 20
+
+# Colors
+const WALL_COLOR = Color(\"#333333\")
+const PATH_COLOR = Color(\"#eeeeee\")
+const GOAL_COLOR = Color(\"#22cc66\")
+
+# Main game scene
+const MAIN_SCENE = \"res://block_maze.tscn\"
+
+# Maze data
+var maze = []
+
+# UI elements
+var generate_button: Button
+
+# Container for physical wall collision blocks
+var wall_container: Node2D
+
+# Tutorial goal
+var goal: Area2D
+
+
+func _ready():
+	# Create the collision container
+	wall_container = Node2D.new()
+	add_child(wall_container)
+
+	# Setup the scene
+
+
+	# Initialize maze array
+	initialize_maze()
+
+	# Generate initial maze
+	generate_maze()
+
+	# Create the tutorial goal
+	setup_goal()
+
+	# Force redraw
+	queue_redraw()
+
+
+
+func initialize_maze():
+	maze = []
+
+	for r in range(ROWS):
+		var row = []
+
+		for c in range(COLS):
+			row.append(1)
+
+		maze.append(row)
+
+
+func generate_maze():
+	# Remove old wall collision blocks
+	for child in wall_container.get_children():
+		child.free()
+
+	# Reset maze
+	for r in range(ROWS):
+		for c in range(COLS):
+			maze[r][c] = 1
+
+	# Start position
+	var start_row = 1
+	var start_col = 1
+	maze[start_row][start_col] = 0
+
+	# Carve passages
+	carve_passages(start_row, start_col)
+
+	# Ensure goal is walkable and connected
+	var goal_row = ROWS - 2
+	var goal_col = COLS - 2
+
+	maze[goal_row][goal_col] = 0
+	maze[goal_row][goal_col - 1] = 0
+
+	# Create wall collisions
+	create_wall_collisions()
+
+
+func carve_passages(r, c):
+	var directions = [
+		[-2, 0],
+		[0, 2],
+		[2, 0],
+		[0, -2]
+	]
+
+	directions.shuffle()
+
+	for direction in directions:
+		var dr = direction[0]
+		var dc = direction[1]
+
+		var new_r = r + dr
+		var new_c = c + dc
+
+		if (
+			new_r > 0
+			and new_r < ROWS - 1
+			and new_c > 0
+			and new_c < COLS - 1
+			and maze[new_r][new_c] == 1
+		):
+			maze[r + int(dr / 2)][c + int(dc / 2)] = 0
+			maze[new_r][new_c] = 0
+
+			carve_passages(new_r, new_c)
+
+
+func create_wall_collisions():
+	for r in range(ROWS):
+		for c in range(COLS):
+			if maze[r][c] == 1:
+				var static_body = StaticBody2D.new()
+
+				static_body.position = Vector2(
+					c * CELL_SIZE + CELL_SIZE / 2.0,
+					r * CELL_SIZE + CELL_SIZE / 2.0
+				)
+
+				var collision_shape = CollisionShape2D.new()
+				var box_shape = RectangleShape2D.new()
+
+				box_shape.size = Vector2(
+					CELL_SIZE,
+					CELL_SIZE
+				)
+
+				collision_shape.shape = box_shape
+				static_body.add_child(collision_shape)
+				wall_container.add_child(static_body)
+
+
+# =========================================
+# TUTORIAL GOAL
+# =========================================
+
+func setup_goal():
+	if is_instance_valid(goal):
+		goal.queue_free()
+
+	goal = Area2D.new()
+	goal.name = \"TutorialGoal\"
+
+	# Bottom-right goal cell
+	goal.position = Vector2(
+		(COLS - 2) * CELL_SIZE + CELL_SIZE / 2.0,
+		(ROWS - 2) * CELL_SIZE + CELL_SIZE / 2.0
+	)
+
+	# Detect bodies on collision layer 1
+	goal.collision_layer = 0
+	goal.collision_mask = 1
+	goal.monitoring = true
+
+	var collision = CollisionShape2D.new()
+	var shape = RectangleShape2D.new()
+	shape.size = Vector2(18, 18)
+
+	collision.shape = shape
+	goal.add_child(collision)
+	add_child(goal)
+
+	goal.body_entered.connect(_on_goal_body_entered)
+
+
+func _on_goal_body_entered(body: Node2D):
+	print(\"Goal touched by: \", body.name)
+
+	# Player node must be named Player
+	if body.name != \"player\":
+		return
+
+	print(\"Tutorial completed! Loading main game...\")
+
+	# Defer scene change to avoid physics callback issues
+	get_tree().call_deferred(
+		\"change_scene_to_file\",
+		MAIN_SCENE
+	)
+
+
+# =========================================
+# DRAW MAZE
+# =========================================
+
+func _draw():
+	for r in range(ROWS):
+		for c in range(COLS):
+			var color = (
+				WALL_COLOR
+				if maze[r][c] == 1
+				else PATH_COLOR
+			)
+
+			var rect = Rect2(
+				c * CELL_SIZE,
+				r * CELL_SIZE,
+				CELL_SIZE,
+				CELL_SIZE
+			)
+
+			draw_rect(rect, color)
+
+	# Draw green goal marker
+	draw_rect(
+		Rect2(
+			(COLS - 2) * CELL_SIZE + 4,
+			(ROWS - 2) * CELL_SIZE + 4,
+			CELL_SIZE - 8,
+			CELL_SIZE - 8
+		),
+		GOAL_COLOR
+	)
+
+
+func _on_generate_button_pressed():
+	generate_maze()
+	queue_redraw()
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyhf1"]
 texture = ExtResource("2_vmw6g")
@@ -77,6 +310,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ns12n"]
 radius = 4.472136
 
+[sub_resource type="GDScript" id="GDScript_tvjhf"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func _on_goal_body_entered(body: Node2D):
+	if body is CharacterBody2D and body.name == \"player\":
+		get_tree().change_scene_to_file(\"res://block_maze.tscn\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvjhf"]
 radius = 15.811388
 
@@ -95,7 +346,7 @@ text = "Use the Arrow Keys to move around, Find the marker and leave! "
 horizontal_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="." unique_id=785057881]
-script = ExtResource("3_vmw6g")
+script = SubResource("GDScript_bhfnd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Node2D" unique_id=508615429]
 y_sort_enabled = true
@@ -125,7 +376,7 @@ limit_right = 1152
 limit_bottom = 649
 
 [node name="Area2D" type="Area2D" parent="." unique_id=822796132]
-script = ExtResource("12_vmw6g")
+script = SubResource("GDScript_tvjhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2112423359]
 position = Vector2(1123, 606)
