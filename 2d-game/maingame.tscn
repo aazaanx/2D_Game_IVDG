@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://clcfyim1x6yre" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_3.png" id="16_ywewv"]
 [ext_resource type="Texture2D" uid="uid://bjnh4wc133hnk" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_4.png" id="17_b1jo6"]
 [ext_resource type="Texture2D" uid="uid://bcpmbbbfu63hp" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_1.png" id="18_3yaqj"]
+[ext_resource type="PackedScene" uid="uid://cv8q5crswnucp" path="res://HEALTH.tscn" id="18_5uxs7"]
 [ext_resource type="Script" uid="uid://beyeqshq5wvll" path="res://chest.gd" id="18_n784x"]
 [ext_resource type="Texture2D" uid="uid://jxksbo8fvave" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_2.png" id="19_tbtx4"]
 [ext_resource type="Texture2D" uid="uid://drmysmdjkwx3t" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_3.png" id="20_1jgrg"]
@@ -570,6 +571,19 @@ theme = SubResource("Theme_n784x")
 theme_override_styles/background = SubResource("StyleBoxFlat_6qlrc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b3c3w")
 show_percentage = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMapLayer/monster" unique_id=344234445]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TileMapLayer/monster/CanvasLayer" unique_id=682211623]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" parent="TileMapLayer/monster/CanvasLayer" unique_id=772810528 instance=ExtResource("18_5uxs7")]
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.028
+anchor_right = 0.04
+anchor_bottom = 0.079
 
 [node name="monster2" type="CharacterBody2D" parent="TileMapLayer" unique_id=1494832351]
 position = Vector2(781.8865, 176.54596)
