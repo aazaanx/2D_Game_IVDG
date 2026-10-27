@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-=======
 extends Area2D
 
 @export var required_coins: int = 10
@@ -41,7 +39,6 @@ func _process(_delta: float) -> void:
 				required_coins - coins_collected
 			)
 
->>>>>>> 238a0cbf287cd92af0902d863c4204afbfe98c3e
 
 func _on_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
