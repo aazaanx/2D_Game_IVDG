@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ddvkp6nileq4t" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_2.png" id="15_ebbwe"]
 [ext_resource type="Texture2D" uid="uid://clcfyim1x6yre" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_3.png" id="16_ywewv"]
 [ext_resource type="Texture2D" uid="uid://bjnh4wc133hnk" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_4.png" id="17_b1jo6"]
+[ext_resource type="PackedScene" uid="uid://cv8q5crswnucp" path="res://HEALTH.tscn" id="18_5uxs7"]
 [ext_resource type="PackedScene" uid="uid://bt30qroijjslf" path="res://coin.tscn" id="24_6i744"]
 [ext_resource type="PackedScene" uid="uid://ftkt13v8xt55" path="res://coincounter.tscn" id="24_fn6un"]
 [ext_resource type="PackedScene" uid="uid://b4mtceev05rrh" path="res://exit_door.tscn" id="25_1pyhd"]
@@ -383,7 +384,7 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftco6"]
-radius = 96.802216
+radius = 62.642696
 
 [sub_resource type="Theme" id="Theme_n784x"]
 
@@ -481,10 +482,11 @@ script = ExtResource("13_2y1gt")
 speed = 80.0
 max_health = 150
 attack_damage = 25
+attack_range = 55.0
 
 [node name="Skeleton" type="AnimatedSprite2D" parent="TileMapLayer/monster3" unique_id=1256016479]
-position = Vector2(3.9999847, -2.9999983)
-scale = Vector2(2.031252, 1.8411806)
+position = Vector2(1, -6.198883e-06)
+scale = Vector2(1.6875, 1.5573642)
 sprite_frames = SubResource("SpriteFrames_ftco6")
 animation = &"idle"
 autoplay = "idle"
@@ -499,7 +501,7 @@ position = Vector2(0, -1.9999695)
 scale = Vector2(1.025, 1.081)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/monster3/DetectionArea" unique_id=1077515635]
-position = Vector2(0.9755783, 2.7751904)
+position = Vector2(-0.9755783, 3.7002602)
 shape = SubResource("CircleShape2D_ftco6")
 
 [node name="HealthBar" type="ProgressBar" parent="TileMapLayer/monster3" unique_id=1944370701]
@@ -548,6 +550,19 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6qlrc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b3c3w")
 show_percentage = false
 
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMapLayer/monster" unique_id=344234445]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TileMapLayer/monster/CanvasLayer" unique_id=682211623]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" parent="TileMapLayer/monster/CanvasLayer" unique_id=772810528 instance=ExtResource("18_5uxs7")]
+anchors_preset = -1
+anchor_left = 0.011
+anchor_top = 0.028
+anchor_right = 0.04
+anchor_bottom = 0.079
+
 [node name="monster2" type="CharacterBody2D" parent="TileMapLayer" unique_id=1494832351]
 position = Vector2(618, 150)
 motion_mode = 1
@@ -555,7 +570,7 @@ script = ExtResource("13_2y1gt")
 speed = 150.0
 max_health = 200
 attack_damage = 30
-attack_range = 40.0
+attack_range = 70.0
 attack_cooldown = 1.5
 
 [node name="Skeleton" type="AnimatedSprite2D" parent="TileMapLayer/monster2" unique_id=519390871]
@@ -575,7 +590,7 @@ position = Vector2(3, 2)
 scale = Vector2(1.025, 1.081)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/monster2/DetectionArea" unique_id=1925146218]
-position = Vector2(-2.926857, -0.9250641)
+position = Vector2(-2.926855, 0.9250717)
 shape = SubResource("CircleShape2D_ftco6")
 
 [node name="HealthBar" type="ProgressBar" parent="TileMapLayer/monster2" unique_id=259168470]
@@ -759,7 +774,6 @@ position = Vector2(-6, 1)
 color = Color(0.46666667, 0.48235294, 0.5411765, 1)
 
 [node name="ExitDoor" parent="." unique_id=1741931697 instance=ExtResource("25_1pyhd")]
-position = Vector2(639, 8)
+position = Vector2(638, 8)
 
-[node name="Coin11" parent="." unique_id=1112455543 instance=ExtResource("24_6i744")]
-position = Vector2(891, 111)
+[connection signal="body_entered" from="ExitDoor" to="ExitDoor" method="_on_body_entered"]
