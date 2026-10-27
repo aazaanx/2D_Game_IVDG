@@ -13,8 +13,10 @@ var current_health: int = 100
 var attack_timer: float = 0.0
 var is_dead: bool = false
 
-# KEY AND CHEST SYSTEM
-var has_key: bool = false
+# COIN SYSTEM
+var collected_coins: int = 0
+var total_coins: int = 0
+var coin_label: Label
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_bar: ProgressBar = $HealthBar
@@ -28,6 +30,29 @@ func _ready() -> void:
 	health_bar.value = current_health
 
 	animation.play("idle_side")
+
+	call_deferred("count_coins")
+
+
+# COIN COUNTER SETUP
+func count_coins() -> void:
+	total_coins = get_tree().get_nodes_in_group("coins").size()
+
+	var scene = get_tree().current_scene
+	coin_label = scene.get_node_or_null("CoinUI/CoinLabel") as Label
+
+	if coin_label == null:
+		push_error("CoinLabel not found! Check CoinUI/CoinLabel node names.")
+		return
+
+	update_coin_counter()
+
+	print("Total coins in level: ", total_coins)
+
+
+func update_coin_counter() -> void:
+	if is_instance_valid(coin_label):
+		coin_label.text = "Coins: " + str(collected_coins) + "/" + str(total_coins)
 
 
 func _physics_process(delta: float) -> void:
@@ -95,18 +120,6 @@ func attack() -> void:
 
 	attack_timer = attack_cooldown
 
-	var facing := Vector2.ZERO
-
-	match current_dir:
-		"right":
-			facing = Vector2.RIGHT
-		"left":
-			facing = Vector2.LEFT
-		"up":
-			facing = Vector2.UP
-		"down":
-			facing = Vector2.DOWN
-
 	for enemy in get_tree().get_nodes_in_group("monster"):
 		if not is_instance_valid(enemy):
 			continue
@@ -114,17 +127,13 @@ func attack() -> void:
 		if not enemy.has_method("take_damage"):
 			continue
 
-		var offset: Vector2 = enemy.global_position - global_position
+		var distance: float = global_position.distance_to(
+			enemy.global_position
+		)
 
-		if offset.length() > attack_range:
-			continue
-
-		# Only hit enemies in front of the player.
-		if facing != Vector2.INF and offset.normalized().dot(facing) < 0.25:
-			continue
-
-		enemy.take_damage(attack_damage)
-		print("Player hit monster for ", attack_damage, " damage!")
+		# Attack monsters in any direction within range.
+		if distance <= attack_range:
+			enemy.take_damage(attack_damage)
 
 
 func take_damage(amount: int) -> void:
@@ -149,6 +158,18 @@ func heal(amount: int) -> void:
 	health_bar.value = current_health
 
 	print("Player healed! Health: ", current_health, "/", max_health)
+
+
+# COIN COLLECTION
+func collect_coin() -> void:
+	collected_coins += 1
+
+	update_coin_counter()
+
+	print("Coins collected: ", collected_coins, "/", total_coins)
+
+	if collected_coins >= 10:
+		print("All 10 coins collected! The exit can open!")
 
 
 func die() -> void:

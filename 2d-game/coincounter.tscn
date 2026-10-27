@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ftkt13v8xt55"]
+
+[ext_resource type="FontFile" uid="uid://6goanjwlbe41" path="res://8_bit_hud/8-bit-hud.ttf" id="1_37alg"]
+
+[node name="CoinUI" type="CanvasLayer" unique_id=600538004]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=550035029]
+offset_left = 959.0
+offset_right = 1139.0
+offset_bottom = 40.0
+color = Color(0.1022527, 0.1022527, 0.102252685, 1)
+
+[node name="CoinLabel" type="Label" parent="." unique_id=116356507]
+anchors_preset = -1
+anchor_left = 0.99700004
+anchor_right = 0.99700004
+offset_left = -178.54407
+offset_top = 10.0
+offset_right = 10.455933
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("1_37alg")
+theme_override_font_sizes/font_size = 14
+text = "Coins: 0/10"
