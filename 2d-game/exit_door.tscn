@@ -6,9 +6,8 @@
 
 [node name="ExitDoor" type="Area2D" unique_id=1741931697]
 script = ExtResource("1_7sac5")
-required_coins = null
 
-[node name="Sprite2D" type="Node2D" parent="." unique_id=1829756581]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=344115210]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696103285]
 shape = SubResource("RectangleShape2D_rt8m2")

@@ -6,16 +6,14 @@ extends Area2D
 var is_open: bool = false
 var player_nearby: bool = false
 
-
+@onready var door_sprite: Sprite2D = get_node_or_null("Sprite2D")
+@onready var message_label: Label = get_node_or_null("Label")
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	
-@onready var door_sprite: Sprite2D = get_node_or_null("Sprite2D")
-@onready var message_label: Label = get_node_or_null("Label")
 
-		if message_label:
+	if message_label:
 		message_label.text = "Collect all 10 coins!"
 
 	update_door()
