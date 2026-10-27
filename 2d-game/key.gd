@@ -4,6 +4,8 @@ extends Area2D
 var player: Node2D = null
 var collected: bool = false
 
+@export var heal_amount: int = 25
+
 
 func _ready() -> void:
 	add_to_group("coins")
@@ -26,8 +28,13 @@ func _process(_delta: float) -> void:
 		if player.has_method("collect_coin"):
 			player.collect_coin()
 			print("Coin collected!")
+				
+	if player.has_method("heal"):
+		player.heal(heal_amount)
+	else:
+				push_error(".")
 
-		queue_free()
+	queue_free()
 
 
 func _on_body_entered(body: Node2D) -> void:
