@@ -120,7 +120,7 @@ func attack() -> void:
 			continue
 
 		# Only hit enemies in front of the player.
-		if facing != Vector2.ZERO and offset.normalized().dot(facing) < 0.25:
+		if facing != Vector2.INF and offset.normalized().dot(facing) < 0.25:
 			continue
 
 		enemy.take_damage(attack_damage)
