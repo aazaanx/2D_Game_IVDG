@@ -62,6 +62,7 @@ text = "You are a pumpkin and must fight and escape the dungeon
 Use the arrows to navigate
 Click space bar to deal damage
 Collect coins with E to increase health
+Collect all 10 coins to exit the final door to freedom!
 "
 label_settings = SubResource("LabelSettings_r4rmp")
 horizontal_alignment = 1
