@@ -383,7 +383,7 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftco6"]
-radius = 62.642696
+radius = 96.802216
 
 [sub_resource type="Theme" id="Theme_n784x"]
 
@@ -481,11 +481,10 @@ script = ExtResource("13_2y1gt")
 speed = 80.0
 max_health = 150
 attack_damage = 25
-attack_range = 55.0
 
 [node name="Skeleton" type="AnimatedSprite2D" parent="TileMapLayer/monster3" unique_id=1256016479]
-position = Vector2(1, -6.198883e-06)
-scale = Vector2(1.6875, 1.5573642)
+position = Vector2(3.9999847, -2.9999983)
+scale = Vector2(2.031252, 1.8411806)
 sprite_frames = SubResource("SpriteFrames_ftco6")
 animation = &"idle"
 autoplay = "idle"
@@ -500,7 +499,7 @@ position = Vector2(0, -1.9999695)
 scale = Vector2(1.025, 1.081)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/monster3/DetectionArea" unique_id=1077515635]
-position = Vector2(-0.9755783, 3.7002602)
+position = Vector2(0.9755783, 2.7751904)
 shape = SubResource("CircleShape2D_ftco6")
 
 [node name="HealthBar" type="ProgressBar" parent="TileMapLayer/monster3" unique_id=1944370701]
@@ -556,7 +555,7 @@ script = ExtResource("13_2y1gt")
 speed = 150.0
 max_health = 200
 attack_damage = 30
-attack_range = 70.0
+attack_range = 40.0
 attack_cooldown = 1.5
 
 [node name="Skeleton" type="AnimatedSprite2D" parent="TileMapLayer/monster2" unique_id=519390871]
@@ -576,7 +575,7 @@ position = Vector2(3, 2)
 scale = Vector2(1.025, 1.081)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayer/monster2/DetectionArea" unique_id=1925146218]
-position = Vector2(-2.926855, 0.9250717)
+position = Vector2(-2.926857, -0.9250641)
 shape = SubResource("CircleShape2D_ftco6")
 
 [node name="HealthBar" type="ProgressBar" parent="TileMapLayer/monster2" unique_id=259168470]
@@ -761,3 +760,6 @@ color = Color(0.46666667, 0.48235294, 0.5411765, 1)
 
 [node name="ExitDoor" parent="." unique_id=1741931697 instance=ExtResource("25_1pyhd")]
 position = Vector2(639, 8)
+
+[node name="Coin11" parent="." unique_id=1112455543 instance=ExtResource("24_6i744")]
+position = Vector2(891, 111)
