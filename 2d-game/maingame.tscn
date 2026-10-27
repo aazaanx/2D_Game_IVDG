@@ -424,6 +424,9 @@ animations = [{
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rt8m2"]
 gradient = SubResource("Gradient_5uxs7")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsau0"]
+radius = 15.811388
+
 [node name="Maze" type="Node2D" unique_id=1978034017]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=674624512]
@@ -775,5 +778,9 @@ color = Color(0.46666667, 0.48235294, 0.5411765, 1)
 
 [node name="ExitDoor" parent="." unique_id=1741931697 instance=ExtResource("25_1pyhd")]
 position = Vector2(638, 8)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ExitDoor" unique_id=1035864970]
+position = Vector2(1123, 606)
+shape = SubResource("CircleShape2D_tsau0")
 
 [connection signal="body_entered" from="ExitDoor" to="ExitDoor" method="_on_body_entered"]
