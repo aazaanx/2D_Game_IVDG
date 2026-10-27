@@ -17,17 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ddvkp6nileq4t" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_2.png" id="15_ebbwe"]
 [ext_resource type="Texture2D" uid="uid://clcfyim1x6yre" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_3.png" id="16_ywewv"]
 [ext_resource type="Texture2D" uid="uid://bjnh4wc133hnk" path="res://2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/skeleton1/v2/skeleton_v2_4.png" id="17_b1jo6"]
-[ext_resource type="Texture2D" uid="uid://bcpmbbbfu63hp" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_1.png" id="18_3yaqj"]
 [ext_resource type="PackedScene" uid="uid://cv8q5crswnucp" path="res://HEALTH.tscn" id="18_5uxs7"]
-[ext_resource type="Script" uid="uid://beyeqshq5wvll" path="res://chest.gd" id="18_n784x"]
-[ext_resource type="Texture2D" uid="uid://jxksbo8fvave" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_2.png" id="19_tbtx4"]
-[ext_resource type="Texture2D" uid="uid://drmysmdjkwx3t" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_3.png" id="20_1jgrg"]
-[ext_resource type="Texture2D" uid="uid://c67psywjksc8u" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/mini_box_1/mini_box_1_4.png" id="21_2x7ir"]
-[ext_resource type="Texture2D" uid="uid://d0i1w5u74oigt" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_1.png" id="22_grdtw"]
-[ext_resource type="Script" uid="uid://dggy0x77w4iap" path="res://key.gd" id="22_u74o5"]
-[ext_resource type="Texture2D" uid="uid://tcj4waeruuuy" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_2.png" id="23_y8t25"]
-[ext_resource type="Texture2D" uid="uid://dwiqrcw4qrthx" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_3.png" id="24_v663p"]
-[ext_resource type="Texture2D" uid="uid://n3pxcechafd" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_1_4.png" id="25_mdr15"]
 [ext_resource type="PackedScene" uid="uid://bt30qroijjslf" path="res://coin.tscn" id="24_6i744"]
 [ext_resource type="PackedScene" uid="uid://ftkt13v8xt55" path="res://coincounter.tscn" id="24_fn6un"]
 [ext_resource type="PackedScene" uid="uid://b4mtceev05rrh" path="res://exit_door.tscn" id="25_1pyhd"]
@@ -782,4 +772,6 @@ position = Vector2(-6, 1)
 color = Color(0.46666667, 0.48235294, 0.5411765, 1)
 
 [node name="ExitDoor" parent="." unique_id=1741931697 instance=ExtResource("25_1pyhd")]
-position = Vector2(639, 8)
+position = Vector2(638, 8)
+
+[connection signal="body_entered" from="ExitDoor" to="ExitDoor" method="_on_body_entered"]
