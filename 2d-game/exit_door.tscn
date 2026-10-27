@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b4mtceev05rrh"]
+
+[ext_resource type="Script" uid="uid://tekcfj6wqdp7" path="res://exit_door.gd" id="1_7sac5"]
+
+[sub_resource type="TileSet" id="TileSet_ftco6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt8m2"]
+
+[node name="ExitDoor" type="Area2D" unique_id=1741931697]
+script = ExtResource("1_7sac5")
+
+[node name="Sprite2D" type="TileMapLayer" parent="." unique_id=744208517]
+tile_set = SubResource("TileSet_ftco6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696103285]
+shape = SubResource("RectangleShape2D_rt8m2")

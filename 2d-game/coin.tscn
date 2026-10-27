@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bt30qroijjslf"]
+
+[ext_resource type="Script" uid="uid://dggy0x77w4iap" path="res://key.gd" id="1_w14il"]
+[ext_resource type="Texture2D" uid="uid://dfhm4tg7m58q1" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_1.png" id="2_h4etq"]
+[ext_resource type="Texture2D" uid="uid://mth75248rw4l" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_2.png" id="3_o4fra"]
+[ext_resource type="Texture2D" uid="uid://bvlkwsw7xsmiw" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_3.png" id="4_te2np"]
+[ext_resource type="Texture2D" uid="uid://olxn64wroda3" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_4.png" id="5_m1j4n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u74o5"]
+radius = 11.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utwfw"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h4etq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o4fra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_te2np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m1j4n")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Coin" type="Area2D" unique_id=1897142078]
+scale = Vector2(1.406, 1)
+script = ExtResource("1_w14il")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2099258550]
+position = Vector2(0, -2)
+scale = Vector2(1.0000001, 1)
+shape = SubResource("CircleShape2D_u74o5")
+
+[node name="CoinAnimation" type="AnimatedSprite2D" parent="." unique_id=961609858]
+position = Vector2(-2.1337128, -2)
+scale = Vector2(1.0263163, 0.8703704)
+sprite_frames = SubResource("SpriteFrames_utwfw")
+animation = &"new_animation"
+autoplay = "new_animation"

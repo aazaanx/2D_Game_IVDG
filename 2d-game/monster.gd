@@ -17,7 +17,7 @@ var is_dead: bool = false
 
 
 func _ready() -> void:
-	print("MONSTER SCRIPT STARTED: ", get_path())
+	
 
 	add_to_group("monster")
 
@@ -33,8 +33,7 @@ func _ready() -> void:
 	if not detection_area.body_exited.is_connected(_on_body_exited):
 		detection_area.body_exited.connect(_on_body_exited)
 
-	print("DetectionArea monitoring: ", detection_area.monitoring)
-	print("DetectionArea collision mask: ", detection_area.collision_mask)
+	
 
 	play_idle()
 
@@ -97,9 +96,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if body is CharacterBody2D and body.is_in_group("player"):
 		player = body as CharacterBody2D
-		print("PLAYER TARGET LOCKED: ", player.get_path())
-		print("Monster position: ", global_position)
-		print("Player position: ", player.global_position)
+		
 
 
 
