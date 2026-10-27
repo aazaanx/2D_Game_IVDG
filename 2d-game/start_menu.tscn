@@ -10,6 +10,8 @@ font_color = Color(1, 0.4745098, 0.05490196, 1)
 outline_size = 4
 outline_color = Color(0.13333334, 0.41960785, 0.05490196, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_r4rmp"]
+
 [node name="Start menu" type="Control" unique_id=601190108]
 layout_mode = 3
 anchors_preset = 0
@@ -21,9 +23,9 @@ script = ExtResource("1_jwbto")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1579976584]
 layout_mode = 0
-offset_left = -427.0
+offset_left = -633.0
 offset_top = -33.0
-offset_right = 389.0
+offset_right = 515.0
 offset_bottom = 71.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -43,3 +45,24 @@ theme_override_fonts/font = ExtResource("2_ia0g5")
 theme_override_font_sizes/font_size = 14
 text = "start game"
 flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=24442456]
+layout_mode = 0
+offset_left = -638.0
+offset_top = -230.58
+offset_right = 520.0
+offset_bottom = -53.579987
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1015546947]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 100
+text = "You are a pumpkin and must fight and escape the dungeon
+
+Use the arrows to navigate
+Click space bar to deal damage
+Collect coins with E to increase health
+"
+label_settings = SubResource("LabelSettings_r4rmp")
+horizontal_alignment = 1
+vertical_alignment = 1
