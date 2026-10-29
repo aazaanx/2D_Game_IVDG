@@ -65,10 +65,6 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 
-	print("CHASE: direction=", direction,
-		" | velocity=", velocity,
-		" | monster=", global_position,
-		" | player=", player.global_position)
 
 	if velocity.x < 0.0:
 		sprite.flip_h = true

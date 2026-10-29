@@ -148,8 +148,6 @@ func take_damage(amount: int) -> void:
 	if current_health <= 0:
 		die()
 
-
-# CHEST HEALTH REWARD
 func heal(amount: int) -> void:
 	if is_dead:
 		return
