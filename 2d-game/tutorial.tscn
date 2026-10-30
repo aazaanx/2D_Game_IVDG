@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c4fybi6y6wns0"]
 
-[ext_resource type="Texture2D" uid="uid://25wdongsw3ks" path="res://wall-path-0001.png" id="2_vmw6g"]
 [ext_resource type="Script" uid="uid://bs6shafparg1b" path="res://player.gd" id="3_4hjyh"]
 [ext_resource type="Texture2D" uid="uid://dnwk4er3un5wu" path="res://pumpkin_dude_idle_anim_f0.png" id="4_bsk3x"]
 [ext_resource type="Texture2D" uid="uid://cwb26tni4e6wf" path="res://pumpkin_dude_idle_anim_f1.png" id="5_dl7dh"]
@@ -246,8 +245,11 @@ func _on_generate_button_pressed():
 	queue_redraw()
 "
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7vrqn"]
+load_path = "res://.godot/imported/wall-path-0001.png-33a8c9b0187b6d535f0e52306819fd47.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyhf1"]
-texture = ExtResource("2_vmw6g")
+texture = SubResource("CompressedTexture2D_7vrqn")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
