@@ -1,0 +1,18 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvq8hb88fq6wm"
+valid=false
+
+[deps]
+
+source_file="res://snoundtrack_ music from snungeon (2)/snoundtrack_ music from snungeon/__MACOSX/snoundtrack_ music from snungeon/._snattle (snail battle).mp3"
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

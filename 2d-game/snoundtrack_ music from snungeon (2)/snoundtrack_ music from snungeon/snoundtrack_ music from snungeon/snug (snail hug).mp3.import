@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2717yvb8iy3n"
+path="res://.godot/imported/snug (snail hug).mp3-f8a0a7b624f2b21ef3996dfea2993d81.mp3str"
+
+[deps]
+
+source_file="res://snoundtrack_ music from snungeon (2)/snoundtrack_ music from snungeon/snoundtrack_ music from snungeon/snug (snail hug).mp3"
+dest_files=["res://.godot/imported/snug (snail hug).mp3-f8a0a7b624f2b21ef3996dfea2993d81.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

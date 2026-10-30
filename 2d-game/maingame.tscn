@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ftkt13v8xt55" path="res://coincounter.tscn" id="24_fn6un"]
 [ext_resource type="PackedScene" uid="uid://b4mtceev05rrh" path="res://exit_door.tscn" id="25_1pyhd"]
 [ext_resource type="Texture2D" uid="uid://rwlyh6r45woy" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_1.png" id="26_np24b"]
+[ext_resource type="AudioStream" uid="uid://tk8xd68yfqwp" path="res://snoundtrack_ music from snungeon (2)/snoundtrack_ music from snungeon/snoundtrack_ music from snungeon/snungeon (snail dungeon).mp3" id="27_6i744"]
 [ext_resource type="Texture2D" uid="uid://dssh647qaluen" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_2.png" id="27_a1acs"]
 [ext_resource type="Texture2D" uid="uid://bhikn7ji7d73m" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="27_tsau0"]
 [ext_resource type="Texture2D" uid="uid://bccwlf81dj0ag" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/torch/torch_3.png" id="28_dxsqd"]
@@ -1008,5 +1009,9 @@ texture = ExtResource("27_tsau0")
 script = ExtResource("32_b3c3w")
 light_energy = 0.7999999999999999
 light_size = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=414490803]
+stream = ExtResource("27_6i744")
+autoplay = true
 
 [connection signal="body_entered" from="ExitDoor" to="ExitDoor" method="_on_body_entered"]
