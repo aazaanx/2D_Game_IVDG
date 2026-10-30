@@ -32,7 +32,7 @@ size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="VBoxContainer2" unique_id=533550413]
 layout_mode = 2
-text = "Pumpkin Patch "
+text = "Pumpkin Dungeon"
 label_settings = SubResource("LabelSettings_e2urk")
 horizontal_alignment = 1
 vertical_alignment = 1

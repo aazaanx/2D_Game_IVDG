@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brf8qex86eyf3"
+path="res://.godot/imported/sneme (snail theme).mp3-aee2a080277ace80444b943737c07fd0.mp3str"
+
+[deps]
+
+source_file="res://snoundtrack_ music from snungeon (2)/snoundtrack_ music from snungeon/snoundtrack_ music from snungeon/sneme (snail theme).mp3"
+dest_files=["res://.godot/imported/sneme (snail theme).mp3-aee2a080277ace80444b943737c07fd0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://csbqb321ax3kn"
+path="res://.godot/imported/snattle (snail battle).mp3-e64bfa2590c00646f777e9fd26a18d34.mp3str"
+
+[deps]
+
+source_file="res://snoundtrack_ music from snungeon (2)/snoundtrack_ music from snungeon/snoundtrack_ music from snungeon/snattle (snail battle).mp3"
+dest_files=["res://.godot/imported/snattle (snail battle).mp3-e64bfa2590c00646f777e9fd26a18d34.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
