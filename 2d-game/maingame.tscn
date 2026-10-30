@@ -1010,12 +1010,8 @@ script = ExtResource("32_b3c3w")
 light_energy = 0.7999999999999999
 light_size = 1.0
 
-<<<<<<< Updated upstream
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=414490803]
 stream = ExtResource("27_6i744")
 autoplay = true
-=======
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1276121154]
->>>>>>> Stashed changes
 
 [connection signal="body_entered" from="ExitDoor" to="ExitDoor" method="_on_body_entered"]
