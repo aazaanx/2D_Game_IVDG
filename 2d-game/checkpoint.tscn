@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cs7iw8gtb06ou"]
+
+[ext_resource type="Texture2D" uid="uid://caeel2esbfa66" path="res://UI ASSETS/Cute_Fantasy_Icons_Free/16x16/single_Icons_16x16/Free_16x16_Icon_173.png" id="1_luqgl"]
+[ext_resource type="Script" uid="uid://dcn3u4txxn1to" path="res://checkpoint.gd" id="1_r6hke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2urk"]
+
+[node name="Checkpoint" type="Area2D" unique_id=1622282258]
+script = ExtResource("1_r6hke")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1522544051]
+texture = ExtResource("1_luqgl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132701436]
+shape = SubResource("RectangleShape2D_e2urk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
