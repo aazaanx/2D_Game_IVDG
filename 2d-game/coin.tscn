@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://mth75248rw4l" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_2.png" id="3_o4fra"]
 [ext_resource type="Texture2D" uid="uid://bvlkwsw7xsmiw" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_3.png" id="4_te2np"]
 [ext_resource type="Texture2D" uid="uid://olxn64wroda3" path="res://2D Pixel Dungeon Asset Pack/items and trap_animation/coin/coin_4.png" id="5_m1j4n"]
+[ext_resource type="AudioStream" uid="uid://rcmq8dyiq5p3" path="res://ribhavagrawal-coin-recieved-230517-1.mp3" id="6_h4etq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u74o5"]
 radius = 11.0
@@ -49,3 +50,6 @@ scale = Vector2(1.0263163, 0.8703704)
 sprite_frames = SubResource("SpriteFrames_utwfw")
 animation = &"new_animation"
 autoplay = "new_animation"
+
+[node name="CoinSound" type="AudioStreamPlayer2D" parent="." unique_id=1374416773]
+stream = ExtResource("6_h4etq")
