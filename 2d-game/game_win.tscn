@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://6goanjwlbe41" path="res://8_bit_hud/8-bit-hud.ttf" id="1_fctd2"]
 [ext_resource type="Script" uid="uid://bd4kvuob4ylqy" path="res://game_win.gd" id="1_nyypv"]
 [ext_resource type="Texture2D" uid="uid://d3yfg1olstria" path="res://UI ASSETS/BaT_v2.0/randomСolor/single_textures/texture14.png" id="2_nyypv"]
+[ext_resource type="AudioStream" uid="uid://cut3c1882uokl" path="res://emand_edroff-victory-bell-success-fanfare-576275-1.mp3" id="4_3qqx7"]
 
 [node name="GameWin" type="Control" unique_id=340324296]
 layout_mode = 3
@@ -46,5 +47,9 @@ texture = ExtResource("2_nyypv")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1333440069]
 position = Vector2(573, 324)
 zoom = Vector2(2, 2)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=914037836]
+stream = ExtResource("4_3qqx7")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]

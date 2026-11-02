@@ -45,7 +45,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if coins_collected != null and coins_collected >= required_coins:
 			is_open = true
 			update_door()
-			get_tree().change_scene_to_file("res://lastlevel.tscn")
+			get_tree().change_scene_to_file("res://game_win.tscn")
 		else:
 			if message_label:
 				message_label.text = "You need %d more coins!" % (
