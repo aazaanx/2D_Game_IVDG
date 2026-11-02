@@ -6,6 +6,9 @@ var collected: bool = false
 
 @export var heal_amount: int = 25
 
+@onready var coin_sound: AudioStreamPlayer2D = $CoinSound
+
+
 func _ready() -> void:
 	add_to_group("coins")
 	body_entered.connect(_on_body_entered)
@@ -36,7 +39,14 @@ func _process(_delta: float) -> void:
 		else:
 			push_error("Player has no heal() method!")
 
-		# Remove coin after collecting
+		# Play coin sound
+		coin_sound.play()
+
+		# Remove coin after sound finishes
+		hide()
+		$CollisionShape2D.set_deferred("disabled", true)
+
+		await coin_sound.finished
 		queue_free()
 
 
