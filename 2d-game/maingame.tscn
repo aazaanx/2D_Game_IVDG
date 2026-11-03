@@ -605,7 +605,7 @@ show_percentage = false
 [node name="CoinUI" parent="." unique_id=600538004 instance=ExtResource("24_fn6un")]
 
 [node name="Coin" parent="." unique_id=1897142078 instance=ExtResource("24_6i744")]
-position = Vector2(187.00002, 149)
+position = Vector2(954, 116)
 metadata/_edit_group_ = true
 
 [node name="Coin9" parent="." unique_id=1578610351 instance=ExtResource("24_6i744")]
@@ -859,7 +859,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=806406945]
-position = Vector2(277.25, 140.25)
+position = Vector2(290, 140)
 scale = Vector2(0.65820324, 0.58007824)
 texture = ExtResource("27_tsau0")
 script = ExtResource("32_b3c3w")
@@ -1003,7 +1003,7 @@ light_energy = 0.7999999999999999
 light_size = 1.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1778074369]
-position = Vector2(105.75001, 140.74998)
+position = Vector2(104.000015, 136)
 scale = Vector2(0.6738281, 0.59179676)
 texture = ExtResource("27_tsau0")
 script = ExtResource("32_b3c3w")
